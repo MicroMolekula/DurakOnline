@@ -99,6 +99,18 @@
             <LinearLayout
                 android:layout_width="1dp"
                 android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:gravity="center_vertical">
+                <Button
+                    android:id="@+id/btnbito"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:text="Бито">
+                </Button>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
                 android:layout_marginTop="4dp"
                 android:layout_weight="1"
                 android:rotation="90.0">
@@ -125,45 +137,125 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_weight="4"
-            android:gravity="center_vertical"
             android:weightSum="4"
-            android:orientation="vertical">
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_weight="2"
-                android:orientation="horizontal"
-                android:weightSum="6">
+            android:orientation="vertical"
+            android:gravity="bottom">
+
                 <LinearLayout
-                    android:layout_width="1dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:layout_marginRight="1dp">
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="1dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:layout_marginRight="1dp">
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="1dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:layout_marginRight="1dp">
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="1dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:layout_marginRight="1dp">
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="1dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:layout_marginRight="1dp">
-                </LinearLayout>
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_weight="3"
+                    android:orientation="horizontal"
+                    android:weightSum="6"
+                    android:layout_marginBottom="25dp">
+                    <FrameLayout
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:layout_marginRight="1dp"
+                        android:orientation="vertical">
+                        <com.developlstu.durakonline.views.CardsView
+                            android:id="@+id/cardonfieldenemy1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:visibility="visible" />
+                        <com.developlstu.durakonline.views.CardsView
+                            android:id="@+id/cardonfield1"
+                            android:layout_width="match_parent"
+                            android:layout_marginTop="50dp"
+                            android:layout_height="wrap_content"
+                            android:visibility="visible" />
+                    </FrameLayout>
+                    <FrameLayout
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:layout_marginRight="1dp"
+                        android:orientation="vertical">
+                        <com.developlstu.durakonline.views.CardsView
+                            android:id="@+id/cardonfieldenemy2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:visibility="visible" />
+                        <com.developlstu.durakonline.views.CardsView
+                            android:id="@+id/cardonfield2"
+                            android:layout_width="match_parent"
+                            android:layout_marginTop="50dp"
+                            android:layout_height="wrap_content"
+                            android:visibility="visible" />
+                    </FrameLayout>
+                    <FrameLayout
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:layout_marginRight="1dp"
+                        android:orientation="vertical">
+                        <com.developlstu.durakonline.views.CardsView
+                            android:id="@+id/cardonfieldenemy3"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:visibility="visible" />
+                        <com.developlstu.durakonline.views.CardsView
+                            android:id="@+id/cardonfield3"
+                            android:layout_width="match_parent"
+                            android:layout_marginTop="50dp"
+                            android:layout_height="wrap_content"
+                            android:visibility="visible" />
+                    </FrameLayout>
+                    <FrameLayout
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:layout_marginRight="1dp"
+                        android:orientation="vertical">
+                        <com.developlstu.durakonline.views.CardsView
+                            android:id="@+id/cardonfieldenemy4"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:visibility="visible" />
+                        <com.developlstu.durakonline.views.CardsView
+                            android:id="@+id/cardonfield4"
+                            android:layout_width="match_parent"
+                            android:layout_marginTop="50dp"
+                            android:layout_height="wrap_content"
+                            android:visibility="visible" />
+                    </FrameLayout>
+                    <FrameLayout
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:layout_marginRight="1dp"
+                        android:orientation="vertical">
+                        <com.developlstu.durakonline.views.CardsView
+                            android:id="@+id/cardonfieldenemy5"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:visibility="visible" />
+                        <com.developlstu.durakonline.views.CardsView
+                            android:id="@+id/cardonfield5"
+                            android:layout_width="match_parent"
+                            android:layout_marginTop="50dp"
+                            android:layout_height="wrap_content"
+                            android:visibility="visible" />
+                    </FrameLayout>
+                    <FrameLayout
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:layout_marginRight="1dp"
+                        android:orientation="vertical">
+                        <com.developlstu.durakonline.views.CardsView
+                            android:id="@+id/cardonfieldenemy6"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:visibility="visible" />
+                        <com.developlstu.durakonline.views.CardsView
+                            android:id="@+id/cardonfield6"
+                            android:layout_width="match_parent"
+                            android:layout_marginTop="50dp"
+                            android:layout_height="wrap_content"
+                            android:visibility="visible" />
+                    </FrameLayout>
             </LinearLayout>
 
         </LinearLayout>

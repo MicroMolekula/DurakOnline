@@ -15,10 +15,10 @@ data class Cards(val suit: Suit, val value: String)
 
 
 class Deck(){
-
     companion object{
         var size = 36
     }
+
     private val deck: ArrayList<Cards> = ArrayList()
     init{
         for(i in Suit.values()){

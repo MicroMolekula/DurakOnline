@@ -21,6 +21,8 @@ class GameActivity : AppCompatActivity() {
         val deck: Deck = Deck()
         deck.outputDeck()
 
+
+
         val cardsEnemy: Array<CardsView?> = Array(6, {null})
         cardsEnemy[0] = findViewById(R.id.enemyCard1)
         cardsEnemy[1] = findViewById(R.id.enemyCard2)

@@ -2,7 +2,6 @@ package com.developlstu.durakonline.models
 
 import android.media.AsyncPlayer
 import android.view.View
-import android.view.View.INVISIBLE
 import com.developlstu.durakonline.GameActivity
 import com.developlstu.durakonline.views.CardsView
 import com.developlstu.durakonline.models.Cards
@@ -20,7 +19,7 @@ class GameModel(val cardsPlayer: Array<CardsView?>,
                 val trump: CardsView){
 
     val cValue = cardValue()
-    var lastCardOnField: Cards? = lastCardOnField(cardsOnFieldEnemy)
+
 
     public fun play(){
         initCardsPlayer(cardsPlayer, deck)
@@ -29,8 +28,8 @@ class GameModel(val cardsPlayer: Array<CardsView?>,
         initCardsOnField(cardsOnFieldEnemy)
         trump.setValue(deck.takeTrump())
         var turn = 1
-        attack(turn)
-        defender(turn)
+        for (i in cardsPlayer) i?.setOnClickListener(MoveCard(i.getValue(), cardsOnField))
+        for (i in cardsEnemy) i?.setOnClickListener(MoveCard(i.getValue(), cardsOnFieldEnemy))
         //turn = abs(turn - 1)
 
     }
@@ -65,45 +64,10 @@ class GameModel(val cardsPlayer: Array<CardsView?>,
         return true
     }
 
-    private fun lastCardOnField(cardsOnFieldEnemy: Array<CardsView?>): Cards?{
-        for(i in cardsOnFieldEnemy.indices){
-            if (cardsOnFieldEnemy[i]?.visibility == View.INVISIBLE && i != 0){
-                println("${cardsOnFieldEnemy[i-1]?.getValue()?.value} ${cardsOnFieldEnemy[i-1]?.getValue()?.suit}")
-                return cardsOnFieldEnemy[i-1]?.getValue()
-            }
-        }
-        return null
-    }
-
-    private fun attack(turn: Int){
-        if(turn == 0){
-            for(i in cardsPlayer) {
-                i?.setOnClickListener(MoveCard(i.getValue(), cardsOnFieldEnemy))
-            }
-        }
-        if(turn == 1){
-            for(i in cardsEnemy) i?.setOnClickListener(MoveCard(i.getValue(), cardsOnFieldEnemy))
-            lastCardOnField = lastCardOnField(cardsOnFieldEnemy)
-        }
-    }
-
-    private fun defender(turn: Int){
-        if(turn == 1){
-            for(i in cardsPlayer) {
-                if(lastCardOnField(cardsOnField)?.suit == i?.getValue()?.suit) {
-                    i?.setOnClickListener(MoveCard(i.getValue(), cardsOnField))
-                }
-            }
-        }
-        if(turn == 0){
-            for(i in cardsEnemy) i?.setOnClickListener(MoveCard(i.getValue(), cardsOnField))
-        }
-    }
-
     class MoveCard(val card: Cards?, val array: Array<CardsView?>): View.OnClickListener{
         override fun onClick(v: View){
             CardsView.Companion.tmpCard = card
-            v.visibility = INVISIBLE
+            v.visibility = View.INVISIBLE
             this.moveCardOnField(array)
         }
 

@@ -2,6 +2,7 @@ package com.developlstu.durakonline.models
 
 import android.media.AsyncPlayer
 import android.view.View
+import android.widget.Button
 import com.developlstu.durakonline.GameActivity
 import com.developlstu.durakonline.views.CardsView
 import com.developlstu.durakonline.models.Cards
@@ -16,28 +17,24 @@ class GameModel(val cardsPlayer: Array<CardsView?>,
                 val cardsOnField: Array<CardsView?>,
                 val cardsOnFieldEnemy: Array<CardsView?>,
                 val deck: Deck,
-                val trump: CardsView){
+                val trump: CardsView,
+                val btn: Button){
 
     val cValue = cardValue()
-
-
-    public fun play(){
-        initCardsPlayer(cardsPlayer, deck)
-        initCardsOnField(cardsOnField)
-        initCardsEnemy(cardsEnemy, deck)
-        initCardsOnField(cardsOnFieldEnemy)
-        trump.setValue(deck.takeTrump())
-        var turn = 1
-        for (i in cardsPlayer) i?.setOnClickListener(MoveCard(i.getValue(), cardsOnField))
-        for (i in cardsEnemy) i?.setOnClickListener(MoveCard(i.getValue(), cardsOnFieldEnemy))
-        //turn = abs(turn - 1)
-
+    val p1 = Player(1, cardsPlayer)
+    val p2 = Player(2, cardsEnemy)
+    companion object{
+        var turn:Boolean = true
     }
 
-    private fun initCardsPlayer(array: Array<CardsView?>, deck: Deck){
-        for(i in 0 until 6){
-            array[i]?.setValue(deck.takeCard())
-        }
+    fun play(){
+        p1.initCards(deck)
+        p2.initCards(deck)
+        initCardsOnField(cardsOnField)
+        initCardsOnField(cardsOnFieldEnemy)
+        trump.setValue(deck.takeTrump())
+        atack(p1)
+        defend(p2)
     }
 
     private fun initCardsOnField(array: Array<CardsView?>){
@@ -46,28 +43,47 @@ class GameModel(val cardsPlayer: Array<CardsView?>,
         }
     }
 
-    private fun initCardsEnemy(array: Array<CardsView?>, deck: Deck){
-        for(i in 0 until 6){
-            array[i]?.setValue(deck.takeCard())
+    private fun countCardInHand(arr: Array<CardsView?>): Int{
+        var count: Int = 0
+        for(card in arr){
+            if(card?.visibility == View.VISIBLE){
+                count++
+            }
         }
+        return count
     }
 
-    private fun countCards(): Boolean {
+    private fun winner(): Int{
         if(Deck.Companion.size == 0 && trump.visibility == View.INVISIBLE){
-            var count = 0
-            for(i in cardsEnemy) if(i?.visibility == View.INVISIBLE) count++
-            if(count == 6) return false
-            count = 0
-            for(j in cardsPlayer) if(j?.visibility == View.INVISIBLE) count++
-            if(count == 6) return false
+            if(countCardInHand(p1.heand) == 0){
+                return p1.id
+            }
+            else if(countCardInHand(p2.heand) == 0){
+                return p2.id
+            }
         }
-        return true
+        return 0
     }
+
+    private fun atack(p: Player){
+        for (card in p.heand) card?.setOnClickListener(MoveCard(card.getValue(), cardsOnFieldEnemy))
+    }
+
+    private fun defend(p: Player){
+        for (card in p.heand) card?. setOnClickListener(MoveCard(card.getValue(), cardsOnField))
+    }
+
+    private fun nextTurn(view: View){
+        if(turn) { turn = false}
+        else {turn = true}
+    }
+
 
     class MoveCard(val card: Cards?, val array: Array<CardsView?>): View.OnClickListener{
         override fun onClick(v: View){
             CardsView.Companion.tmpCard = card
             v.visibility = View.INVISIBLE
+
             this.moveCardOnField(array)
         }
 
